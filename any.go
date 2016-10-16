@@ -1,11 +1,11 @@
 package any
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"reflect"
 	"strings"
-	"fmt"
 )
 
 type App struct {
@@ -29,7 +29,8 @@ func (app *App) LoadRoute(routersMap Routers) *App {
 func (app *App) callHttp(res http.ResponseWriter, req *http.Request) {
 	app.Ctx = HttpContext{ResponseWriter: res, Request: req}
 
-	fmt.Fprint(res,req.URL.Path)
+	fmt.Fprint(res, req.URL.Path)
+	fmt.Println(req.URL.Path)
 
 	isFound := false
 	switch req.Method {
