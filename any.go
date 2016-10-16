@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"reflect"
 	"strings"
+	"fmt"
 )
 
 type App struct {
@@ -27,6 +28,9 @@ func (app *App) LoadRoute(routersMap Routers) *App {
 
 func (app *App) callHttp(res http.ResponseWriter, req *http.Request) {
 	app.Ctx = HttpContext{ResponseWriter: res, Request: req}
+
+	fmt.Fprint(res,req.URL.Path)
+
 	isFound := false
 	switch req.Method {
 	case "GET":
