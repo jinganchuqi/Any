@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"test/any"
+	"any/any"
 	"fmt"
 	"io"
 	"os"
@@ -13,13 +13,13 @@ type Test struct {
 
 func (ctx *Test) Test() {
 	data := map[string]interface{}{
-		"Title":"Hello",
-		"Content":"Hello,World1",
+		"Title":   "Hello",
+		"Content": "Hello,World1",
 	}
 	ctx.Render("test", data)
 }
 
-func (ctx *Test) Upload(){
+func (ctx *Test) Upload() {
 	file, handle, err := ctx.Request.FormFile("file")
 	ctx.CheckErr(err)
 	f, err := os.OpenFile(ctx.RunPath+"/resource/storage/"+handle.Filename, os.O_WRONLY|os.O_CREATE, 0666)
@@ -30,5 +30,3 @@ func (ctx *Test) Upload(){
 	defer file.Close()
 	fmt.Println("upload success")
 }
-
-

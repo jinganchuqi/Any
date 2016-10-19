@@ -1,8 +1,8 @@
 package main
 
 import (
-	"test/app/routers"
-	"test/any"
+	"any/any"
+	"any/app/routers"
 )
 
 func main() {
