@@ -2,6 +2,9 @@ package controllers
 
 import (
 	"test/any"
+	"fmt"
+	"io"
+	"os"
 )
 
 type Test struct {
@@ -13,5 +16,19 @@ func (ctx *Test) Test() {
 		"Title":"Hello",
 		"Content":"Hello,World1",
 	}
-	ctx.Render("D:/Go/src/test/tpl/test.html", data)
+	ctx.Render("test", data)
 }
+
+func (ctx *Test) Upload(){
+	file, handle, err := ctx.Request.FormFile("file")
+	ctx.CheckErr(err)
+	f, err := os.OpenFile(ctx.RunPath+"/resource/storage/"+handle.Filename, os.O_WRONLY|os.O_CREATE, 0666)
+	ctx.CheckErr(err)
+	io.Copy(f, file)
+	ctx.CheckErr(err)
+	defer f.Close()
+	defer file.Close()
+	fmt.Println("upload success")
+}
+
+

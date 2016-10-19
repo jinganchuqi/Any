@@ -1,11 +1,7 @@
 package controllers
 
 import (
-	"fmt"
 	"test/any"
-	"path/filepath"
-	"os"
-	"os/exec"
 )
 
 type Index struct {
@@ -13,10 +9,15 @@ type Index struct {
 }
 
 func (ctx *Index)Index() {
-	fmt.Fprint(ctx.Response, "/")
-
-	file, _ := exec.LookPath(os.Args[0])
-	path, _ := filepath.Abs(file)
-	println(path)
+	ctx.MakeJson(map[string]interface{}{
+		"code":200,
+		"msg":"SUCCESS",
+		"data":map[string]interface{}{
+			"userName":"Jiang",
+		},
+	})
 }
+
+
+
 

@@ -3,30 +3,56 @@ package any
 import (
 	"net/http"
 	"html/template"
+	"fmt"
+	"encoding/json"
 )
 
+
 type HttpContext struct {
-	ResponseWriter http.ResponseWriter
+	Response       http.ResponseWriter
 	Request        *http.Request
 	Params         string
 }
 
+type EnvContext struct {
+	RunPath string
+}
+
 type Ctx struct {
-	//httpContext HttpContext
-	Response http.ResponseWriter
-	Request  *http.Request
-	Params   string
+	HttpContext
+	EnvContext
 }
 
-func (ctx *Ctx) Init(httpContext HttpContext) {
-	ctx.Response = httpContext.ResponseWriter
-	ctx.Request = httpContext.Request
-	ctx.Params = httpContext.Params
+/**
+  初始化
+ */
+func (ctx *Ctx) InitCtx(c Ctx) {
+	ctx.Response = c.Response
+	ctx.Request = c.Request
+	ctx.Params = c.Params
+	ctx.RunPath = c.RunPath
 }
 
+/**
+ 渲染模板
+ */
 func (ctx *Ctx) Render(pathString string, data interface{}) {
-	t, err := template.ParseFiles(pathString)
+	t, err := template.ParseFiles(ctx.RunPath+"/resource/tpl/"+pathString+".html")
 	checkErr(err)
 	err = t.Execute(ctx.Response, data)
 	checkErr(err)
 }
+
+func (ctx *Ctx) MakeJson(data interface{}){
+	jsonString, err := json.Marshal(data)
+	checkErr(err)
+	fmt.Fprint(ctx.Response,string(jsonString))
+}
+
+func (app *Ctx) CheckErr(err error) {
+	if err != nil {
+		err.Error()
+	}
+}
+
+
