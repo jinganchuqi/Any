@@ -49,6 +49,10 @@ func (ctx *Ctx) Render(pathString string, data interface{}) {
 func (ctx *Ctx) MakeJson(data interface{}) {
 	jsonString, err := json.Marshal(data)
 	checkErr(err)
+	ctx.Response.Header().Add("Content-Type","application/json;charset=utf-8")
+	ctx.Response.Header().Add("Server","nginx/tomcat7")
+	ctx.Response.Header().Add("X-Powered-By","java spring 4.3x")
+	ctx.Response.Header().Add("Access-Control-Allow-Origin","*")
 	fmt.Fprint(ctx.Response, string(jsonString))
 }
 
@@ -58,8 +62,12 @@ func (app *Ctx) CheckErr(err error) {
 	}
 }
 
-func (ctx *Ctx) ThrowHttp(exceptMsg string) {
-	fmt.Fprint(ctx.Response, string(exceptMsg))
+/**
+
+ */
+func (ctx *Ctx) ThrowHttp(errMsg string, code int) {
+	//http.Error(ctx.Response,errMsg,http.StatusText(code))
+	fmt.Println(errMsg, code)
 }
 
 func (e *Ctx) ThrowConsole(exceptMsg string) {

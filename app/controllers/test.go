@@ -19,6 +19,11 @@ func (ctx *Test) Test() {
 	ctx.Render("test", data)
 }
 
+func (ctx *Test) Blog() {
+	ctx.Render("blog", struct {
+	}{})
+}
+
 func (ctx *Test) Upload() {
 	file, handle, err := ctx.Request.FormFile("file")
 	ctx.CheckErr(err)

@@ -11,6 +11,7 @@ func Routers() any.Routers {
 	routers.Get("/test@Test", &controllers.Test{})
 
 	routers.Get("/test/:{id}@Test", &controllers.Test{})
+	routers.Get("test/blog/@Blog", &controllers.Test{})
 
 	routers.Post("/test/upload@Upload", &controllers.Test{})
 	return routers

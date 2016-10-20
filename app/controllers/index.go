@@ -13,7 +13,8 @@ func (ctx *Index) Index() {
 		"code": 200,
 		"msg":  "SUCCESS",
 		"data": map[string]interface{}{
-			"userName": "Jiang",
+			"userName": "子非鱼",
+			"userAge" :33,
 		},
 	})
 }
