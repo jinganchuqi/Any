@@ -1,8 +1,8 @@
 package routers
 
 import (
-	"test/app/controllers"
-	"test/any"
+	"any/any"
+	"any/app/controllers"
 )
 
 func Routers() any.Routers {
@@ -10,6 +10,9 @@ func Routers() any.Routers {
 	routers.Get("/@Index", &controllers.Index{})
 	routers.Get("/test@Test", &controllers.Test{})
 
-	routers.Post("/upload@Upload", &controllers.Test{})
+	routers.Get("/test/:{id}@Test", &controllers.Test{})
+	routers.Get("test/blog/@Blog", &controllers.Test{})
+
+	routers.Post("/test/upload@Upload", &controllers.Test{})
 	return routers
 }
