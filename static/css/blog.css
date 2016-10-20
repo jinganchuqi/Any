@@ -1,0 +1,260 @@
+body {
+    font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #f5f5f5;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: #555;
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 760px;
+        padding: 0;
+    }
+}
+
+.global-nav {
+    position: relative;
+    z-index: 3
+}
+
+.global-nav .nav {
+    height: 54px;
+    padding: 0 15px
+}
+
+.global-nav li a {
+    font-size: 16px;
+    text-decoration: none
+}
+
+.global-navTags {
+    /* background-color:#005f3c; */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .24);
+}
+
+.global-navTags nav {
+    position: relative;
+    font-size: 14px;
+}
+
+.global-navTags nav .nav__list {
+    height: 34px;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.global-navTags nav .nav__list:after {
+    content: '';
+    display: block;
+    clear: both
+}
+
+.global-navTags nav .nav__item {
+    display: inline-block;
+    padding: 0
+}
+
+.global-navTags nav .nav__item:first-child > a {
+    padding-left: 0
+}
+
+.global-navTags nav .nav__item .fa {
+    margin-right: 5px
+}
+
+.global-navTags nav .nav__item a {
+    display: block;
+    padding: 10px;
+    color: #9dccb6;
+    white-space: nowrap;
+    line-height: 1
+}
+
+.page-header {
+    color: #555;
+}
+
+.h10 {
+    clear: both;
+    height: 1rem;
+}
+
+.h_5 {
+    clear: both;
+    height: 0.5rem;
+}
+
+.prevAndNext {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fs-22 {
+    font-size: 22px;
+}
+
+.art-info {
+    margin-top: 20px;
+}
+
+.art-info p {
+    margin-bottom: 5px;
+}
+
+.post-list {
+    padding-left: 0;
+    padding-top: 20px;
+    height: auto;
+    overflow: hidden;
+}
+
+.post-list li {
+    height: auto;
+    overflow: hidden;
+    list-style: none;
+    margin-bottom: 20px;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.post-list li a {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+    color: #555;
+    font-size: 15px;
+}
+
+.post-list li a span {
+    font-size: 14px;
+    display: block;
+    float: left;
+}
+
+.post-list li a .title {
+    width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pager li {
+    overflow: hidden;
+    height: auto;
+    border: none;
+}
+
+@media (max-width: 640px) {
+
+    .post-list li a .title {
+        width: 230px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .pager li {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .pager .previous > a, .pager .previous > span {
+        float: none;
+    }
+
+    .pager .next > a, .pager .next > span {
+        float: none;
+    }
+}
+
+.post-list li a:hover {
+    color: black;
+}
+
+.post img {
+    max-width: 100%;
+}
+
+.post {
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 1.2em 0;
+}
+
+.post pre {
+    border: 0;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.footer {
+    text-align: center;
+}
+
+.footer p {
+    padding: 2rem;
+    width: 100%;
+    border-top: 1px solid #f1f1f1;
+}
+
+.footer p a {
+    padding: 1rem;
+}
+
+.pull-right {
+    text-align: right;
+}
+
+.tit-bg-1 {
+    background-image: url('../images/tile-bg-1.jpg');
+}
+
+.tit-bg-2 {
+    background-image: url('../images/tile-bg-2.jpg');
+}
+
+.tit-bg-3 {
+    background-image: url('../images/tile-bg-3.jpg');
+}
+
+.tit-bg-4 {
+    background-image: url('../images/tile-bg-4.jpg');
+}
+
+.tit-bg-5 {
+    background-image: url('../images/tile-bg-5.jpg');
+}
+
+.tit-bg-6 {
+    background-image: url('../images/tile-bg-6.jpg');
+}
+
+.tit-bg-7 {
+    background-image: url('../images/tile-bg-7.jpg');
+}
+
+.tit-bg-8 {
+    background-image: url('../images/tile-bg-8.jpg');
+}
