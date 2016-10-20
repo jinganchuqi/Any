@@ -49,10 +49,10 @@ func (ctx *Ctx) Render(pathString string, data interface{}) {
 func (ctx *Ctx) MakeJson(data interface{}) {
 	jsonString, err := json.Marshal(data)
 	checkErr(err)
-	ctx.Response.Header().Add("Content-Type","application/json;charset=utf-8")
-	ctx.Response.Header().Add("Server","nginx/tomcat7")
-	ctx.Response.Header().Add("X-Powered-By","java spring 4.3x")
-	ctx.Response.Header().Add("Access-Control-Allow-Origin","*")
+	ctx.Response.Header().Add("Content-Type", "application/json;charset=utf-8")
+	ctx.Response.Header().Add("Server", "nginx/tomcat7")
+	ctx.Response.Header().Add("X-Powered-By", "java spring 4.3x")
+	ctx.Response.Header().Add("Access-Control-Allow-Origin", "*")
 	fmt.Fprint(ctx.Response, string(jsonString))
 }
 

@@ -14,7 +14,7 @@ func (ctx *Index) Index() {
 		"msg":  "SUCCESS",
 		"data": map[string]interface{}{
 			"userName": "子非鱼",
-			"userAge" :33,
+			"userAge":  33,
 		},
 	})
 }
