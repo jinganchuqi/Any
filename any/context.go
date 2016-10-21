@@ -5,11 +5,6 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-	"sync"
-)
-
-var (
-	templatesLock sync.RWMutex
 )
 
 type HttpContext struct {

@@ -51,8 +51,8 @@ func (app *App) callHttp(res http.ResponseWriter, req *http.Request) {
 	if statusCode != 200 {
 		http.Error(app.Response, strconv.Itoa(statusCode), statusCode)
 	}
-	//fmt.Println(isStatic, statusCode)
-	//fmt.Println("----end----")
+	fmt.Println(isStatic, statusCode)
+	fmt.Println("----end----")
 }
 
 /**
@@ -107,11 +107,13 @@ func (app *App) switchMethod(routerMap map[string]interface{}) int {
 				return 404
 			}
 			InitCtx.Call(in)
+			in = make([]reflect.Value, 0)
 			requestMethod := vt.MethodByName(path[1])
-			if requestMethod.IsValid() == true {
-				requestMethod.Call([]reflect.Value{})
-				return 200
+			if requestMethod.IsValid() == false {
+				return 404
 			}
+			requestMethod.Call(in)
+			return 200
 			break
 		}
 	}
