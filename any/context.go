@@ -5,6 +5,11 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"sync"
+)
+
+var (
+	templatesLock sync.RWMutex
 )
 
 type HttpContext struct {
@@ -29,7 +34,7 @@ type Ctx struct {
 /**
   初始化
 */
-func (ctx *Ctx) InitCtx(c Ctx) {
+func (ctx *Ctx) InitCtx(c *Ctx) {
 	ctx.Response = c.Response
 	ctx.Request = c.Request
 	ctx.Params = c.Params
@@ -49,6 +54,7 @@ func (ctx *Ctx) Render(pathString string, data interface{}) {
 func (ctx *Ctx) MakeJson(data interface{}) {
 	jsonString, err := json.Marshal(data)
 	checkErr(err)
+	//ctx.Response.Header().Add("Content-Type","application/json; charset=utf-8")
 	fmt.Fprint(ctx.Response, string(jsonString))
 }
 

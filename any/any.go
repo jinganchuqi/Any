@@ -33,11 +33,13 @@ func (app *App) LoadRoute(routersMap Routers) *App {
   响应请求
 */
 func (app *App) callHttp(res http.ResponseWriter, req *http.Request) {
-	fmt.Println("----start----")
+	//fmt.Println("----start----")
+
 	app.initEnvContext()
+	//fmt.Println("debug")
 	app.initHttpContext(res, req)
 	isStatic, statusCode := app.callStatic()
-	fmt.Println(isStatic, statusCode)
+	//fmt.Println(isStatic, statusCode)
 	if isStatic == false {
 		switch app.Request.Method {
 		case "GET":
@@ -49,8 +51,8 @@ func (app *App) callHttp(res http.ResponseWriter, req *http.Request) {
 	if statusCode != 200 {
 		http.Error(app.Response, strconv.Itoa(statusCode), statusCode)
 	}
-	fmt.Println(isStatic, statusCode)
-	fmt.Println("----end----")
+	//fmt.Println(isStatic, statusCode)
+	//fmt.Println("----end----")
 }
 
 /**
@@ -59,9 +61,12 @@ func (app *App) callHttp(res http.ResponseWriter, req *http.Request) {
 */
 func (app *App) callStatic() (bool, int) {
 	staticDir := app.RunPath + "/static/"
-	UrlPath := app.Request.URL.Path
-	if strings.HasPrefix(UrlPath, "/static/") {
-		filePath := staticDir + UrlPath[len("/static/"):]
+	UrlPath := strings.TrimRight(app.Request.URL.Path, "/")
+	if strings.HasPrefix(UrlPath, "/static") {
+		filePath := staticDir + UrlPath[len("/static"):]
+		fmt.Println(UrlPath, staticDir)
+		fmt.Println(filePath)
+		//return true,500
 		fileInfo, err := os.Stat(filePath)
 		if err != nil || os.IsNotExist(err) {
 			return true, 404
@@ -92,21 +97,21 @@ func (app *App) switchMethod(routerMap map[string]interface{}) int {
 			if len(path) != 2 {
 				return 404
 			}
-			vt := reflect.ValueOf(v)
+			t := reflect.Indirect(reflect.ValueOf(v)).Type()
+			vt := reflect.New(t)
 			in := make([]reflect.Value, 1)
-			in[0] = reflect.ValueOf(app.Ctx)
+			//ctx :=&HttpContext {Response: app.Response, Request: app.Request}
+			in[0] = reflect.ValueOf(&app.Ctx)
 			InitCtx := vt.MethodByName("InitCtx")
 			if InitCtx.IsValid() == false {
 				return 404
 			}
 			InitCtx.Call(in)
-			in = make([]reflect.Value, 0)
 			requestMethod := vt.MethodByName(path[1])
-			if requestMethod.IsValid() == false {
-				return 404
+			if requestMethod.IsValid() == true {
+				requestMethod.Call([]reflect.Value{})
+				return 200
 			}
-			requestMethod.Call(in)
-			return 200
 			break
 		}
 	}
